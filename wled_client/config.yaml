@@ -1,0 +1,48 @@
+dev_mode: false
+host: 127.0.0.1
+port: 8888
+max_workers: 10
+devices:
+- id: wled-enc1-cir1
+  type: e131
+  config:
+    name: wled-enc1-cir1
+    ip_address: wled-enc3-cir1.local
+    pixel_count: 850
+    universe: 1
+    universe_end: 5
+    universe_size: 512
+    center_offset: 0
+    refresh_rate: 60
+    channel_count: 2550
+    channel_offset: 0
+    force_refresh: false
+    max_brightness: 1.0
+    preview_only: false
+- id: wled-enc1-cir2
+  type: e131
+  config:
+    name: wled-enc1-cir2
+    ip_address: wled-enc3-cir2.local
+    pixel_count: 850
+    universe: 1
+    universe_end: 5
+    universe_size: 512
+    center_offset: 0
+    refresh_rate: 60
+    channel_count: 2550
+    channel_offset: 0
+    force_refresh: false
+    max_brightness: 1.0
+    preview_only: false
+segment_groups:
+- name: side-left-pillar
+  segments:
+  - name: up-side-left-pillar
+    device_id: wled-enc1-cir1
+    pixel_start: 0
+    pixel_end: 80
+  - name: around-top-of-pillar
+    device_id: wled-enc1-cir2
+    pixel_start: 0
+    pixel_end: 150

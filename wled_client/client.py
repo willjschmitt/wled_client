@@ -9,7 +9,7 @@ import ledfx.config as config_helpers
 from ledfx.events import LedFxShutdownEvent
 
 from segments import SegmentGroups, ProxiedEffect
-from effects import SolidColorLightShow
+from effects import SolidColorLightShow, SingleLedChasing
 import colors
 
 
@@ -46,8 +46,27 @@ class LedFxClient(LedFxCore):
         self.segment_groups = SegmentGroups(
             self.config['segment_groups'], self, self.device_effects)
 
+        # Alternating green/red bulb-like.
         show = SolidColorLightShow(self.segment_groups, (colors.RED, colors.GREEN), 1, 2)
         show.activate()
+
+        # # Simple warm white bulb-like.
+        # show = SolidColorLightShow(self.segment_groups, (colors.WARM_WHITE,), 1, 2)
+        # show.activate()
+
+        # # Multi color strand.
+        # show = SolidColorLightShow(
+        #     self.segment_groups,
+        #     (colors.GREEN, colors.ORANGE, colors.RED, colors.YELLOW, colors.BLUE, colors.PURPLE),
+        #     1, 2)
+        # show.activate()
+
+        # # Candi-cane
+        # show = SolidColorLightShow(self.segment_groups, (colors.RED, colors.WARM_WHITE), 15, 0)
+        # show.activate()
+
+        # show = SingleLedChasing(self.segment_groups, colors.RED)
+        # show.activate()
 
         if open_ui:
             import webbrowser

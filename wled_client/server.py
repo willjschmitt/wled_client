@@ -25,7 +25,7 @@ _EFFECT_MAP = {
         (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['BLUE'],), 1, 3),
     'CHRISTMAS': lambda segment_groups, effect_colors: SolidColorLightShow(
         segment_groups,
-        (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['RED'],), 1, 3),
+        (colors.COLOR_MAP['GREEN'], colors.COLOR_MAP['RED'],), 1, 3),
     'CHASING': lambda segment_groups, effect_colors: LedChasing(
         segment_groups, colors),
     'SOLID': lambda segment_groups, effect_colors: SolidColorLightShow(

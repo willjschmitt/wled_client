@@ -99,6 +99,22 @@ devices:
     force_refresh: false
     max_brightness: 1.0
     preview_only: false
+- id: wled-enc4-cir1
+  type: e131
+  config:
+    name: wled-enc4-cir1
+    ip_address: 192.168.10.8
+    pixel_count: 600
+    universe: 1
+    universe_end: 4
+    universe_size: 510
+    center_offset: 0
+    refresh_rate: 60
+    channel_count: 1800
+    channel_offset: 0
+    force_refresh: false
+    max_brightness: 1.0
+    preview_only: false
 segment_groups:
 - name: enc1-cir1
   segments:
@@ -136,5 +152,12 @@ segment_groups:
   segments:
   - name: enc3-cir2
     device_id: wled-enc3-cir2
+    pixel_start: 0
+    pixel_end: 600
+
+- name: enc4-cir1
+  segments:
+  - name: enc4-cir1
+    device_id: wled-enc4-cir1
     pixel_start: 0
     pixel_end: 600

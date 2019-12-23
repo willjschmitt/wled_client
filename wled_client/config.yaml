@@ -7,7 +7,7 @@ devices:
   type: e131
   config:
     name: wled-enc1-cir1
-    ip_address: wled-enc1-cir1.local
+    ip_address: 192.168.10.9
     pixel_count: 600
     universe: 1
     universe_end: 4
@@ -23,7 +23,7 @@ devices:
   type: e131
   config:
     name: wled-enc1-cir2
-    ip_address: wled-enc1-cir2.local
+    ip_address: 192.168.10.10
     pixel_count: 600
     universe: 1
     universe_end: 4
@@ -39,7 +39,7 @@ devices:
   type: e131
   config:
     name: wled-enc2-cir1
-    ip_address: wled-enc2-cir1.local
+    ip_address: 192.168.10.11
     pixel_count: 600
     universe: 1
     universe_end: 4
@@ -55,7 +55,7 @@ devices:
   type: e131
   config:
     name: wled-enc2-cir2
-    ip_address: wled-enc2-cir2.local
+    ip_address: 192.168.10.6
     pixel_count: 600
     universe: 1
     universe_end: 4
@@ -71,7 +71,7 @@ devices:
   type: e131
   config:
     name: wled-enc3-cir1
-    ip_address: wled-enc3-cir1.local
+    ip_address: 192.168.10.12
     pixel_count: 600
     universe: 1
     universe_end: 4
@@ -87,7 +87,7 @@ devices:
   type: e131
   config:
     name: wled-enc3-cir2
-    ip_address: wled-enc3-cir2.local
+    ip_address: 192.168.10.13
     pixel_count: 600
     universe: 1
     universe_end: 4

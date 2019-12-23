@@ -1,4 +1,5 @@
 import logging
+import re
 
 from flask import Flask, Response
 from flask import request
@@ -49,7 +50,8 @@ class LightActionHandler(object):
 
     def __call__(self, *args):
         action = (
-            request.get_json()["action"].upper().replace(" ", "_").lstrip("TO_"))
+            request.get_json()["action"].upper().replace(" ", "_"))
+        action = re.sub(r"^TO_", "", action)
 
         if action in ('ON', 'OFF'):
             _LOGGER.info('Handling power action to %s', action)

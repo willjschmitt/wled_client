@@ -49,7 +49,7 @@ class LightActionHandler(object):
 
     def __call__(self, *args):
         action = (
-            request.get_json()["action"].upper().replace(" ", "_"))
+            request.get_json()["action"].upper().replace(" ", "_").lstrip("TO_"))
 
         if action in ('ON', 'OFF'):
             _LOGGER.info('Handling power action to %s', action)

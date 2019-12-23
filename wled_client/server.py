@@ -19,7 +19,7 @@ _EFFECT_MAP = {
     'MAZELTOV': lambda segment_groups, effect_colors: SolidColorLightShow(
         segment_groups,
         (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['BLUE'],), 1, 3),
-    'MAZEL TOV': lambda segment_groups, effect_colors: SolidColorLightShow(
+    'MAZEL_TOV': lambda segment_groups, effect_colors: SolidColorLightShow(
         segment_groups,
         (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['BLUE'],), 1, 3),
     'CHRISTMAS': lambda segment_groups, effect_colors: SolidColorLightShow(

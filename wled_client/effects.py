@@ -18,7 +18,18 @@ class LightShow(object):
         pass
 
     def deactivate(self):
-        pass
+        for segment_group in self.segment_groups.groups:
+            pixels = segment_group.pixels
+            pixels[:] = (0, 0, 0)
+            segment_group.pixels = pixels
+
+    @property
+    def colors(self):
+        raise NotImplementedError('colors accessor not implemented')
+
+    @colors.setter
+    def colors(self, colors):
+        raise NotImplementedError('colors setter not implemented')
 
 
 class SolidColorLightShow(LightShow):
@@ -27,9 +38,9 @@ class SolidColorLightShow(LightShow):
                  space_between: int = 0):
         super(SolidColorLightShow, self).__init__(segment_groups)
 
-        self.colors = colors
-        self.size_of_color = size_of_color
-        self.space_between = space_between
+        self._colors = colors
+        self._size_of_color = size_of_color
+        self._space_between = space_between
 
     def activate(self):
         for segment_group in self.segment_groups.groups:
@@ -38,10 +49,18 @@ class SolidColorLightShow(LightShow):
             i = 0
             color_block = 0
             while i < len(pixels):
-                pixels[i:i+self.size_of_color] = self.colors[color_block % len(self.colors)]
+                pixels[i:i+self._size_of_color] = self._colors[color_block % len(self.colors)]
                 color_block += 1
-                i += self.size_of_color + self.space_between
+                i += self._size_of_color + self._space_between
             segment_group.pixels = pixels
+
+    @property
+    def colors(self):
+        return self._colors
+
+    @colors.setter
+    def colors(self, colors):
+        self._colors = colors
 
 
 class TemporalLightShow(LightShow):
@@ -86,6 +105,7 @@ class TemporalLightShow(LightShow):
         pass
 
     def activate(self):
+        print('')
         self._thread_active = True
         self._thread = Thread(target=self.thread_function)
         self._thread.start()
@@ -99,20 +119,32 @@ class TemporalLightShow(LightShow):
         super().deactivate()
 
 
-class SingleLedChasing(TemporalLightShow):
-    def __init__(self, segment_groups: SegmentGroups, color: Color):
-        super(SingleLedChasing, self).__init__(segment_groups, {})
+class LedChasing(TemporalLightShow):
+    def __init__(self, segment_groups: SegmentGroups, colors: Sequence[Color]):
+        super(LedChasing, self).__init__(segment_groups, {})
 
-        self.color = color
-
-        self.pixel = 0
+        self._colors = colors
+        self._pixel = 0
 
     def effect_loop(self):
         for segment_group in self.segment_groups.groups:
             pixels = segment_group.pixels
-            pixels[self.pixel] = (0, 0, 0)
-            self.pixel += 1
-            self.pixel = self.pixel % len(pixels)
-            pixels[self.pixel] = self.color
+            pixels[self._pixel] = (0, 0, 0)
+            self._pixel += 1
+            pixel_indicies = (
+                (self._pixel + i) % len(pixels) for i in range(len(pixels)))
+            self._pixel = self._pixel % len(pixels)
+
+            for i, pixel_index in enumerate(pixel_indicies):
+                pixels[pixel_indicies] = self._colors[i]
             segment_group.pixels = pixels
-            time.sleep(0.1)
+
+        return 0.1
+
+    @property
+    def colors(self):
+        return self._colors
+
+    @colors.setter
+    def colors(self, colors):
+        self._colors = colors

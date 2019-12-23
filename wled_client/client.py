@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from threading import Thread
 
 from ledfx.__main__ import parse_args, setup_logging
 from ledfx.core import LedFxCore
@@ -8,9 +9,8 @@ from ledfx.effects import Effects
 import ledfx.config as config_helpers
 from ledfx.events import LedFxShutdownEvent
 
+from server import FlaskAppWrapper
 from segments import SegmentGroups, ProxiedEffect
-from effects import SolidColorLightShow, SingleLedChasing
-import colors
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -20,6 +20,9 @@ class LedFxClient(LedFxCore):
     def __init__(self, config_dir):
         super(LedFxClient, self).__init__(config_dir)
         self.segment_groups = None
+        self.show = None
+
+        # self.assistant_server = app
 
     async def async_start(self, open_ui=False):
         # This overrides the LedFxCore async_start, so we can bind our own
@@ -42,37 +45,41 @@ class LedFxClient(LedFxCore):
         for device in self.devices.values():
             device.set_effect(self.device_effects[device.id])
 
-
         self.segment_groups = SegmentGroups(
             self.config['segment_groups'], self, self.device_effects)
 
         # Alternating green/red bulb-like.
-        show = SolidColorLightShow(self.segment_groups, (colors.RED, colors.GREEN), 1, 2)
-        show.activate()
+        # self.show = SolidColorLightShow(self.segment_groups, (colors.RED, colors.GREEN), 1, 2)
+        # self.show.activate()
 
         # # Simple warm white bulb-like.
-        # show = SolidColorLightShow(self.segment_groups, (colors.WARM_WHITE,), 1, 2)
-        # show.activate()
+        # self.show = SolidColorLightShow(self.segment_groups, (colors.WARM_WHITE,), 1, 2)
+        # self.show.activate()
 
         # # Multi color strand.
-        # show = SolidColorLightShow(
+        # self.show = SolidColorLightShow(
         #     self.segment_groups,
         #     (colors.GREEN, colors.ORANGE, colors.RED, colors.YELLOW, colors.BLUE, colors.PURPLE),
         #     1, 2)
-        # show.activate()
+        # self.show.activate()
 
         # # Candi-cane
-        # show = SolidColorLightShow(self.segment_groups, (colors.RED, colors.WARM_WHITE), 15, 0)
-        # show.activate()
+        # self.show = SolidColorLightShow(self.segment_groups, (colors.RED, colors.WARM_WHITE), 15, 0)
+        # self.show.activate()
 
-        # show = SingleLedChasing(self.segment_groups, colors.RED)
-        # show.activate()
+        # self.show = SingleLedChasing(self.segment_groups, colors.RED)
+        # self.show.activate()
+
+        Thread(target=self.server_thread).start()
 
         if open_ui:
             import webbrowser
             webbrowser.open(self.http.base_url)
 
         await self.flush_loop()
+
+    def server_thread(self):
+        FlaskAppWrapper(self).run()
 
     async def async_stop(self, exit_code=0):
         # This overrides the LedFxCore async_start, so we can prevent it

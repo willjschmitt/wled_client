@@ -10,7 +10,7 @@ _LOGGER = logging.getLogger(__name__)
 
 _EFFECT_MAP = {
     'DEFAULT': lambda segment_groups, effect_colors: SolidColorLightShow(
-        segment_groups, (colors.COLOR_MAP['WARM_WHITE'],), 1, 1),
+        segment_groups, (colors.COLOR_MAP['WARM_WHITE'],), 1, 3),
     'ALTERNATE_COLORS': lambda segment_groups, effect_colors: SolidColorLightShow(
         segment_groups, effect_colors, 1, 3),
     'CANDY_CANE': lambda segment_groups, effect_colors: SolidColorLightShow(
@@ -18,10 +18,10 @@ _EFFECT_MAP = {
         (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['RED'],), 10, 0),
     'MAZELTOV': lambda segment_groups, effect_colors: SolidColorLightShow(
         segment_groups,
-        (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['BLUE'],), 1, 1),
+        (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['BLUE'],), 1, 3),
     'CHRISTMAS': lambda segment_groups, effect_colors: SolidColorLightShow(
         segment_groups,
-        (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['RED'],), 1, 1),
+        (colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['RED'],), 1, 3),
     'CHASING': lambda segment_groups, effect_colors: LedChasing(
         segment_groups, colors),
     'SOLID': lambda segment_groups, effect_colors: SolidColorLightShow(

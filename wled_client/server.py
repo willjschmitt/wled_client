@@ -53,7 +53,7 @@ class LightActionHandler(object):
 
     def __call__(self, *args):
         action = (
-            request.get_json()["action"].upper().replace(" ", "_"))
+            request.get_json()["action"].upper().replace(" ", "_").replace("'", ""))
         action = re.sub(r"^TO_", "", action)
 
         if action in ('ON', 'OFF'):

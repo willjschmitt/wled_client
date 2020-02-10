@@ -32,7 +32,7 @@ _EFFECT_MAP = {
         segment_groups, colors),
     'VALENTINES': lambda segment_groups, effect_colors: SolidColorLightShow(
         segment_groups,
-        (colors.COLOR_MAP['PINK'], colors.COLOR_MAP['WHITE'],), 1, 3),
+        (colors.COLOR_MAP['RED'], colors.COLOR_MAP['PINK'],), 1, 3),
 }
 
 

@@ -14,5 +14,5 @@ COLOR_MAP = {
     'LIGHT_GOLDENROD_YELLOW': (250, 250, 210),
     'PURPLE': (128, 0, 128),
     'MEDIUM_PURPLE': (147, 112, 219),
-    'PINK': (255, 192, 203),
+    'PINK': (255, 100, 100),
 }

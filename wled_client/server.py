@@ -33,6 +33,27 @@ _EFFECT_MAP = {
     'VALENTINES': lambda segment_groups, effect_colors: SolidColorLightShow(
         segment_groups,
         (colors.COLOR_MAP['PINK'], colors.COLOR_MAP['LIGHT_PINK'],), 1, 3),
+    'IRELAND': lambda segment_groups, effect_colors: SolidColorLightShow(
+        segment_groups,
+        (colors.COLOR_MAP['GREEN'], colors.COLOR_MAP['WHITE'], colors.COLOR_MAP['ORANGE'], colors.COLOR_MAP['WHITE'],), 10, 0),
+    'ST_PATRICKS_DAY': lambda segment_groups, effect_colors: SolidColorLightShow(
+        segment_groups,
+        (colors.COLOR_MAP['GREEN'], colors.COLOR_MAP['YELLOW'],), 1, 3),
+    'MEMORIAL_DAY': lambda segment_groups, effect_colors: SolidColorLightShow(
+        segment_groups,
+        (colors.COLOR_MAP['RED'], colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['BLUE'], colors.COLOR_MAP['WARM_WHITE'],), 4, 2),
+    'PRIDE': lambda segment_groups, effect_colors: SolidColorLightShow(
+        segment_groups,
+        (colors.COLOR_MAP['RED'], colors.COLOR_MAP['ORANGE'], colors.COLOR_MAP['YELLOW'], colors.COLOR_MAP['GREEN'], colors.COLOR_MAP['BLUE'], colors.COLOR_MAP['PURPLE'],), 1, 1, 4),
+    'AMERICA': lambda segment_groups, effect_colors: SolidColorLightShow(
+        segment_groups,
+        (colors.COLOR_MAP['RED'], colors.COLOR_MAP['WARM_WHITE'], colors.COLOR_MAP['BLUE'], colors.COLOR_MAP['WARM_WHITE'],), 1, 2),
+    'BLACKOUT': lambda segment_groups, effect_colors: SolidColorLightShow(
+        segment_groups,
+        (colors.COLOR_MAP['BLACKOUT'],), 1, 6),
+    'BLACK_OUT': lambda segment_groups, effect_colors: SolidColorLightShow(
+        segment_groups,
+        (colors.COLOR_MAP['BLACKOUT'],), 1, 6),  
 }
 
 

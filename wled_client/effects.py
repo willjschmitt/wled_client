@@ -35,12 +35,13 @@ class LightShow(object):
 class SolidColorLightShow(LightShow):
     def __init__(self, segment_groups: SegmentGroups,
                  colors: Sequence[Color], size_of_color: int = 1,
-                 space_between: int = 0):
+                 space_between: int = 0, space_between_segments: int = 0):
         super(SolidColorLightShow, self).__init__(segment_groups)
 
         self._colors = colors
         self._size_of_color = size_of_color
         self._space_between = space_between
+        self._space_between_segments = space_between_segments
 
     def activate(self):
         for segment_group in self.segment_groups.groups:
@@ -50,8 +51,10 @@ class SolidColorLightShow(LightShow):
             color_block = 0
             while i < len(pixels):
                 pixels[i:i+self._size_of_color] = self._colors[color_block % len(self.colors)]
-                color_block += 1
+                if color_block % len(self.colors) == len(self.colors) - 1:
+                    i += self._space_between_segments
                 i += self._size_of_color + self._space_between
+                color_block += 1
             segment_group.pixels = pixels
 
     @property

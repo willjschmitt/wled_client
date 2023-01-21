@@ -16,4 +16,5 @@ COLOR_MAP = {
     'MEDIUM_PURPLE': (147, 112, 219),
     'PINK': (255, 5, 5),
     'LIGHT_PINK': (255, 45, 45),
+    'BLACKOUT': (1, 0, 1),
 }
